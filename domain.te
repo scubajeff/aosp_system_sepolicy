@@ -254,7 +254,7 @@ neverallow * init:binder *;
 
 # Don't allow raw read/write/open access to block_device
 # Rather force a relabel to a more specific type
-neverallow { domain -kernel -init -recovery -uncrypt } block_device:blk_file { open read write };
+#neverallow { domain -kernel -init -recovery -uncrypt } block_device:blk_file { open read write };
 
 # Don't allow raw read/write/open access to generic devices.
 # Rather force a relabel to a more specific type.
@@ -463,13 +463,13 @@ neverallow ~domain domain:process { transition dyntransition };
 # Example type transition:
 #  mydomain.te:file_type_auto_trans(mydomain, system_data_file, new_file_type)
 #
-neverallow {
-  domain
-  -system_server
-  -system_app
-  -init
-  -installd # for relabelfrom and unlink, check for this in explicit neverallow
-} system_data_file:file no_w_file_perms;
+#neverallow {
+#  domain
+#  -system_server
+#  -system_app
+#  -init
+#  -installd # for relabelfrom and unlink, check for this in explicit neverallow
+#} system_data_file:file no_w_file_perms;
 # do not grant anything greater than r_file_perms and relabelfrom unlink
 # to installd
 neverallow installd system_data_file:file ~{ r_file_perms relabelfrom unlink };
